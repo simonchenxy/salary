@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  box-sizing: border-box;
+  outline: none;
+}
+html{
+  font-size: 625%;
+}
+body{
+  margin: 0;
+  padding: 0;
+  font-size: 0.14rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+  margin: 0.2rem auto;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.input-group{
+  font-size: 0.14rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.input-group span{
+  width: 0.9rem;
+  text-align: right;
+}
+.input-group .form-control{
+  width: 2.5rem;
+  height: 0.3rem;
+  border: 1px solid rgb(172, 172, 172);
+  padding-left: 10px;
+  font-size: 0.14rem;
+  margin-left: 5px;
+  line-height: 0.3rem;
+}
+
+.input-group + .input-group{
+  margin-top: 0.2rem;
+}
+.btn{
+  width: 1rem;
+  height: 0.3rem;
+  background: #3faebd;
+  border: 0;
+  color: white;
+  margin-top: 0.2rem;
+}
+.danger{
+  position: absolute;
+  bottom:-0.2rem;
+  color: red;
+  padding-left: 100px;
+}

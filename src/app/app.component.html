@@ -1,0 +1,17 @@
+<div class="container">
+  <form #salaryForm="ngForm" class="form-group">
+    <div class="input-group">
+      <span>总工资</span>
+      <input #salary="ngModel" [(ngModel)]="salarys" type="number" class="form-control" placeholder="请输入工资金额" name="salary" required>
+      <div [hidden]="salary.valid||salary.pristine" class="danger">请输入工资金额</div>
+    </div>
+    
+    <div class="input-group">
+      <span>补助</span>
+      <input [(ngModel)]="more" type="number" class="form-control" placeholder="如果有补助请输入金额" name="more">
+    </div>
+  </form>
+  <button class="btn" type="button" (click)="computed()" [disabled]="salary.invalid">开始计算</button>
+
+  <view-detail *ngIf="show" [salary]="parentSalary" [more]="parentMore"></view-detail>
+</div>
