@@ -13,5 +13,5 @@
   </form>
   <button class="btn" type="button" (click)="computed()" [disabled]="salaryInput.invalid">开始计算</button>
 
-  <view-detail *ngIf="show" [salary]="parent.salary" [more]="parent.more"></view-detail>
+  <view-detail *ngIf="show" [dataDetail]="dataDetail"></view-detail>
 </div>
