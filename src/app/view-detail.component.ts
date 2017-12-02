@@ -15,7 +15,7 @@ import { ParseSourceFile } from '@angular/compiler';
   `]
 
 })
-export class ViewDetailComponent implements OnInit,OnChanges {
+export class ViewDetailComponent {
   @Input() salary:number;
   @Input() more:number;
   gongjijin:number;
@@ -25,9 +25,7 @@ export class ViewDetailComponent implements OnInit,OnChanges {
   tax:number;
   all:number;
   money:number;
-  ngOnInit(){
-    this.computed();
-  }
+
   ngOnChanges(){
     this.computed();
   }
