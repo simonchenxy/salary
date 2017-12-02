@@ -1,7 +1,8 @@
 import { Component, Input,OnInit,OnChanges } from '@angular/core';
 
-import { taxes } from './tax'
-import { ParseSourceFile } from '@angular/compiler';
+import { taxes } from './tax';
+import { DataDetail } from './salary-data';
+
 
 
 
@@ -18,28 +19,23 @@ import { ParseSourceFile } from '@angular/compiler';
 export class ViewDetailComponent {
   @Input() salary:number;
   @Input() more:number;
-  gongjijin:number;
-  yanglao:number;
-  yiliao:number;
-  shiye:number;
-  tax:number;
-  all:number;
-  money:number;
+  dataDetail = new DataDetail();
 
   ngOnChanges(){
     this.computed();
   }
 
   computed(){
-    this.gongjijin=this.point(this.salary * 0.1)
-    this.yanglao=this.point(this.salary * 0.08);
-    this.yiliao=this.point(this.salary * 0.02);
-    this.shiye=this.point(this.salary * 0.01 / 2);
-    let tax1 = this.salary-(this.gongjijin+this.yanglao+this.yiliao+this.shiye+3500);
-    this.taxFilter(tax1);
+    this.dataDetail.gongjijin=this.point(this.salary * 0.1)
+    this.dataDetail.yanglao=this.point(this.salary * 0.08);
+    this.dataDetail.yiliao=this.point(this.salary * 0.02);
+    this.dataDetail.shiye=this.point(this.salary * 0.01 / 2);
+    let num = this.dataDetail.gongjijin+this.dataDetail.yanglao+this.dataDetail.yiliao+this.dataDetail.shiye;
+    let taxBefore = this.salary-(num+3500);
+    this.taxFilter(taxBefore);
     this.more = this.more?this.more:0;
-    this.all = this.gongjijin+this.yanglao+this.yiliao+this.shiye+this.tax;
-    this.money = this.salary-(this.gongjijin+this.yanglao+this.yiliao+this.shiye+this.tax)+Number(this.more);
+    this.dataDetail.all = num+this.dataDetail.tax;
+    this.dataDetail.money = this.salary-(num+this.dataDetail.tax)+Number(this.more);
   }
 
   point(num:number):number{
@@ -47,12 +43,12 @@ export class ViewDetailComponent {
   }
   taxFilter(num:number){
     if(num<0){
-      this.tax = 0;
+      this.dataDetail.tax = 0;
     }else{
       for(let i=0;i<taxes.length;i++){
         if(num>taxes[i].min && num<= taxes[i].max){
           let result = Number(num*taxes[i].percent - taxes[i].num)
-          this.tax = this.point(result);
+          this.dataDetail.tax = this.point(result);
         }
       }
     }
