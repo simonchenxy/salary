@@ -11,7 +11,10 @@
       <input [(ngModel)]="data.more" type="number" class="form-control" placeholder="如果有补助请输入金额" name="more">
     </div>
   </form>
-  <button class="btn" type="button" (click)="computed()" [disabled]="salaryInput.invalid">开始计算</button>
+  <div>
+    <button class="btn" type="button" (click)="salaryForm.reset()">重置</button>
+    <button class="btn" type="button" (click)="computed()" [disabled]="salaryInput.invalid">开始计算</button>
+  </div>
 
   <view-detail *ngIf="show" [dataDetail]="dataDetail"></view-detail>
 </div>

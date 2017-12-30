@@ -24,7 +24,6 @@ export class AppComponent {
     this.dataDetail.all = num+this.dataDetail.tax;
     this.dataDetail.money = this.data.salary-(num+this.dataDetail.tax)+Number(this.data.more?this.data.more:0);
   }
-
   point(num:number):number{
     return parseFloat(num.toFixed(2))
   }
