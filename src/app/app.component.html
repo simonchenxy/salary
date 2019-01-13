@@ -2,19 +2,66 @@
   <form #salaryForm="ngForm" class="form-group">
     <div class="input-group">
       <span>总工资</span>
-      <input #salaryInput="ngModel" [(ngModel)]="data.salary" type="number" class="form-control" placeholder="请输入工资金额" name="salary" required>
-      <div [hidden]="salaryInput.valid||salaryInput.pristine" class="danger">请输入工资金额</div>
+      <input #salaryInput="ngModel" [(ngModel)]="data.salary" type="number" class="form-control" placeholder="请输入工资金额"
+        name="salary" required>
+      <div [hidden]="salaryInput.valid||salaryInput.pristine" class="error-message">请输入工资金额</div>
     </div>
-    
+
+    <div class="input-group">
+      <span>个税附加扣除</span>
+      <input [(ngModel)]="data.additional" type="number" class="form-control" placeholder="个税附加扣除总金额" name="additional">
+    </div>
     <div class="input-group">
       <span>补助</span>
-      <input [(ngModel)]="data.more" type="number" class="form-control" placeholder="如果有补助请输入金额" name="more">
+      <input [(ngModel)]="data.allowance" type="number" class="form-control" placeholder="如果有补助请输入金额" name="allowance">
     </div>
+
   </form>
   <div>
     <button class="btn" type="button" (click)="salaryForm.reset()">重置</button>
     <button class="btn" type="button" (click)="computed()" [disabled]="salaryInput.invalid">开始计算</button>
   </div>
+  <ng-container *ngIf="salaryDetailTemplateDisplay">
+    <ng-container *ngTemplateOutlet="salaryDetailTemplate; context: {$implicit: deductDetail}"></ng-container>
+  </ng-container>
 
-  <app-view-detail *ngIf="show" [dataDetail]="dataDetail"></app-view-detail>
 </div>
+
+<ng-template #salaryDetailTemplate let-detail>
+  <div class="show-item">
+    <div class="input-group">
+      <span>公积金</span>
+      <div class="form-control">{{detail.gongjijin}} x 2 = {{detail.gongjijin * 2}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>养老保险</span>
+      <div class="form-control">{{detail.yanglao}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>医疗保险</span>
+      <div class="form-control">{{detail.yiliao}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>失业险</span>
+      <div class="form-control">{{detail.shiye}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>个人所得税</span>
+      <div class="form-control">{{detail.tax}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>合计共扣除</span>
+      <div class="form-control">{{detail.all}}</div>
+    </div>
+
+    <div class="input-group">
+      <span>实际到手金额</span>
+      <div class="form-control">{{detail.finalIncome}}</div>
+    </div>
+  </div>
+</ng-template>

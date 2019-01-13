@@ -1,0 +1,51 @@
+.container{
+    margin: 0.2rem auto;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .input-group{
+        font-size: 0.14rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        span{
+            width: 0.9rem;
+            text-align: right;
+        }
+        .form-control{
+            width: 2.5rem;
+            height: 0.3rem;
+            border: 1px solid rgb(172, 172, 172);
+            padding-left: 10px;
+            font-size: 0.14rem;
+            margin-left: 5px;
+            line-height: 0.3rem;
+        }
+        & + .input-group {
+            margin-top: 0.2rem;
+        }
+        .error-message{
+            position: absolute;
+            bottom:-0.2rem;
+            color: red;
+            padding-left: 100px;
+        }
+    }
+
+    .btn{
+        width: 1rem;
+        height: 0.3rem;
+        background: #3faebd;
+        border: 0;
+        color: white;
+        margin-top: 0.2rem;
+    }
+      
+    .show-item {
+        margin-top: 20px;
+    }
+}
+  
+
+
